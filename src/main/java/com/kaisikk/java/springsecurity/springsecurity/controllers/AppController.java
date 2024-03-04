@@ -1,13 +1,11 @@
 package com.kaisikk.java.springsecurity.springsecurity.controllers;
 
 import com.kaisikk.java.springsecurity.springsecurity.model.Application;
+import com.kaisikk.java.springsecurity.springsecurity.model.MyUser;
 import com.kaisikk.java.springsecurity.springsecurity.services.AppService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,6 +31,12 @@ public class AppController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
         public Application applicationById(@PathVariable int id){
         return service.applicationById(id);
+        }
+
+        @PostMapping("/new-user")
+        public String addUser(@RequestBody MyUser user){
+        service.addUser(user);
+        return "User is saved";
         }
     }
 

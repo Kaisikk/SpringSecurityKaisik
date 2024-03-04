@@ -1,5 +1,9 @@
 spring:
-  security:
-    user:
-      name: admin
-      password: admin
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/SECURITY_db
+    username: kaisik
+    password: 123
+    jpa:
+      hibernate:
+        ddl-auto: create

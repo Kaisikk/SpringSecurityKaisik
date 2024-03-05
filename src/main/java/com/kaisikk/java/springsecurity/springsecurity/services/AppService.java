@@ -13,6 +13,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.IntStream;
 
+/**
+ * @author Kaisikk
+ *
+ * Дефолтный сервис для работы с Security
+ */
 @Service
 @AllArgsConstructor
 public class AppService {
@@ -25,8 +30,10 @@ public class AppService {
 
     /**
      * CreateListOfObject
+     *
+     * Просто заполняем список рандомными значениями
      */
-    // гарантирует вызов метода 1 раз после инициализации свойств компонентов
+    // метод вызывается каждый раз когда создается объект
     @PostConstruct
     public void loadAppInDb(){
         Faker faker = new Faker();
@@ -43,7 +50,7 @@ public class AppService {
     /**
      * GetListOfApplications
      *
-     * @return
+     * @return List
      */
     public List<Application> allApplications(){
         return applications;
@@ -53,7 +60,7 @@ public class AppService {
      * GetApplicationById
      *
      * @param id
-     * @return
+     * @return Application
      */
     public Application applicationById(int id){
         return applications.stream()
@@ -62,6 +69,11 @@ public class AppService {
                 .orElse(null);
     }
 
+    /**
+     * Добавление пользователя
+     *
+     * @param user
+     */
     public void addUser(MyUser user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         repository.save(user);

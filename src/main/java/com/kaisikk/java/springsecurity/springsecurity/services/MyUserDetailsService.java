@@ -11,6 +11,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * @author Kaisikk
+ *
+ * Сервис для получения юзеров из базы
+ */
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 

@@ -16,24 +16,46 @@ public class AppController {
     @Autowired
     private AppService service;
 
+    /**
+     * Просто возврат строки для тестов
+     *
+     * @return String
+     */
     @GetMapping("/welcome")
     public String weclome(){
         return "Welcome to the unprotected page";
     }
 
+    /**
+     * Получение списка объектов из сервиса
+     *
+     * @return List
+     */
     @GetMapping("/all-app")
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public List<Application> allApplications() {
         return service.allApplications();
     }
 
+    /**
+     * Поиск записи по id в сервисе
+     *
+     * @param id
+     * @return Application
+     */
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
         public Application applicationById(@PathVariable int id){
         return service.applicationById(id);
         }
 
-        @PostMapping("/new-user")
+    /**
+     * Создание нового пользователя
+     *
+     * @param user
+     * @return String
+     */
+    @PostMapping("/new-user")
         public String addUser(@RequestBody MyUser user){
         service.addUser(user);
         return "User is saved";
